@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class SusanBehaviour : MonoBehaviour
@@ -6,12 +5,18 @@ public class SusanBehaviour : MonoBehaviour
     [SerializeField] Transform player;
     [SerializeField] float range;
     public float speed;
+    public float startWaitTime;
+    public Transform[] movePoints;
     Rigidbody2D susanRB;
     private Vector2 movement;
+    private int randomPoint;
+    private float waitTime;
 
     private void Start()
     {
         susanRB = GetComponent<Rigidbody2D>();
+        waitTime = startWaitTime;
+        randomPoint = Random.Range(0, movePoints.Length);
     }
 
     private void Update()
@@ -28,7 +33,20 @@ public class SusanBehaviour : MonoBehaviour
 
         else
         {
-            Patrol();
+            transform.position = Vector2.MoveTowards(transform.position, movePoints[randomPoint].position, speed * Time.deltaTime);
+            if (Vector2.Distance(transform.position, movePoints[randomPoint].position) < 0.2f)
+            {
+                if (waitTime <= 0)
+                {
+                    randomPoint = Random.Range(0, movePoints.Length);
+                    waitTime = startWaitTime;
+                }
+
+                else
+                {
+                    waitTime -= Time.deltaTime;
+                }
+            }
         }
 
         CatchPlayer();
@@ -36,12 +54,7 @@ public class SusanBehaviour : MonoBehaviour
 
     void MoveSusan (Vector2 direction)
     {
-        susanRB.MovePosition((Vector2)transform.position + (direction * speed * Time.deltaTime));
-    }
-
-    void Patrol()
-    {
-        susanRB.velocity = Vector2.zero;//fix, make her patrol
+        transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
     }
 
     void CatchPlayer()
