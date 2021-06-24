@@ -1,12 +1,15 @@
+using System.Collections;
 using UnityEngine;
 
 public class SusanBehaviour : MonoBehaviour
 {
     [SerializeField] Transform player;
     [SerializeField] float range;
+    [SerializeField] float catchRange;
     public float speed;
     public float startWaitTime;
     public Transform[] movePoints;
+    public Boss boss;
     Rigidbody2D susanRB;
     private Vector2 movement;
     private int randomPoint;
@@ -49,7 +52,10 @@ public class SusanBehaviour : MonoBehaviour
             }
         }
 
-        CatchPlayer();
+        if (distanceToPlayer < catchRange)
+        {
+            CatchPlayer();
+        }
     }
 
     void MoveSusan (Vector2 direction)
@@ -59,6 +65,15 @@ public class SusanBehaviour : MonoBehaviour
 
     void CatchPlayer()
     {
-        
+        boss.range += 10f;
+        boss.speed += 5f;
+        StartCoroutine(ResetStats());
+    }
+
+    IEnumerator ResetStats()
+    {
+        boss.range -= 10f;
+        boss.speed -= 5f;
+        yield return new WaitForSeconds(6f);
     }
 }

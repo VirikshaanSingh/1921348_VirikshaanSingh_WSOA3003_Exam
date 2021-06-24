@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {
     public float maxTime;
-    float timeLeft;
+    public float timeLeft;
     Image timerBar;
 
     void Start()

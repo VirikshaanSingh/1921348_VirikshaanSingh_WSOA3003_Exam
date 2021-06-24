@@ -3,6 +3,7 @@ using UnityEngine;
 public class TaskScript : MonoBehaviour
 {
     Vector3 mouseOffset;
+    public 
     
     Vector3 MousePosition()
     {
