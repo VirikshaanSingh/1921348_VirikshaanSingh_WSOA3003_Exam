@@ -1259,6 +1259,7 @@ MonoBehaviour:
   tasksLeft: 7
   dialogueBox: {fileID: 1000636997}
   punchBoard: {fileID: 1540662609}
+  timer: {fileID: 0}
 --- !u!1001 &395358625
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6466,7 +6467,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6454664888202020438, guid: 109c91e5e219a4f4ca5b06bcde9815df, type: 3}
       propertyPath: speed
-      value: 10
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6454664888202020438, guid: 109c91e5e219a4f4ca5b06bcde9815df, type: 3}
       propertyPath: timer
@@ -6478,7 +6479,7 @@ PrefabInstance:
       objectReference: {fileID: 1060035615}
     - target: {fileID: 6454664888202020438, guid: 109c91e5e219a4f4ca5b06bcde9815df, type: 3}
       propertyPath: catchRange
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6454664888202020438, guid: 109c91e5e219a4f4ca5b06bcde9815df, type: 3}
       propertyPath: startWaitTime
