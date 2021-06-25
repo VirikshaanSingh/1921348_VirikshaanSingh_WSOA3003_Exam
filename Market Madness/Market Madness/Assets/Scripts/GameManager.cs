@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     {
         if (timer.timeLeft <=0 && tasksLeft <= 0)
         {
-            punchBoard.SetActive(false);
+            punchBoard.SetActive(true);
         }
     }
 }

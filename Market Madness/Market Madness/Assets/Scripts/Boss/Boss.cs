@@ -9,18 +9,19 @@ public class Boss : MonoBehaviour
     [SerializeField] float catchRange;
     public float speed;
     public float startWaitTime;
+    public int maxIndex;
     public Transform[] movePoints;
     public Timer timer;
     Rigidbody2D bossRB;
     private Vector2 movement;
-    private int randomPoint;
+    private int movePointIndex;
     private float waitTime;
 
     private void Start()
     {
+        movePointIndex = 0;
         bossRB = GetComponent<Rigidbody2D>();
         waitTime = startWaitTime;
-        randomPoint = Random.Range(0, movePoints.Length);
     }
 
     private void Update()
@@ -39,13 +40,18 @@ public class Boss : MonoBehaviour
 
             else
             {
-                transform.position = Vector2.MoveTowards(transform.position, movePoints[randomPoint].position, speed * Time.deltaTime);
-                if (Vector2.Distance(transform.position, movePoints[randomPoint].position) < 0.2f)
+                transform.position = Vector2.MoveTowards(transform.position, movePoints[movePointIndex].position, speed * Time.deltaTime);
+                if (Vector2.Distance(transform.position, movePoints[movePointIndex].position) < 0.2f)
                 {
                     if (waitTime <= 0)
                     {
-                        randomPoint = Random.Range(0, movePoints.Length);
+                        movePointIndex += 1;
                         waitTime = startWaitTime;
+
+                        if (movePointIndex >= maxIndex)
+                        {
+                            movePointIndex = 0;
+                        }
                     }
 
                     else
