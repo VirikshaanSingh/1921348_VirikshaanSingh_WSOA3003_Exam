@@ -80,7 +80,7 @@ public class Boss : MonoBehaviour
 
     IEnumerator LoseTransition()
     {
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene(0);
         yield return new WaitForSeconds(5f);
     }
 }
